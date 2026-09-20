@@ -171,3 +171,5 @@ document.addEventListener("submit", (event) => { const form = event.target.close
 $("#save-name").addEventListener("click", saveName); $("#student-name").addEventListener("keydown", (event) => { if (event.key === "Enter") saveName(); });
 $("#menu-toggle").addEventListener("click", () => { const open = $("#main-nav").classList.toggle("open"); $("#menu-toggle").setAttribute("aria-expanded", String(open)); });
 $("#student-name").value = state.name; setupLearn(); startGame(); renderDiagnosticIntro(); renderPracticeIntro();
+
+
