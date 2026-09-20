@@ -1,5 +1,23 @@
 "use strict";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyBtehGB6Sc1uVlKiihIks8HChfoliNqK4",
+  authDomain: "kobeitdos-ai.firebaseapp.com",
+  projectId: "kobeitdos-ai",
+  storageBucket: "kobeitdos-ai.firebasestorage.app",
+  messagingSenderId: "983414230108",
+  appId: "1:983414230108:web:16dbae3502556e47056a99"
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
 const TABLES = Array.from({ length: 8 }, (_, index) => index + 2);
 const STORAGE_KEY = "kobeitdos-class-results-v1";
 const state = { name: localStorage.getItem("kobeitdos-name") || "", diagnostic: null, weakNumber: null, practice: null, game: null };
