@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#6246ea">
+  <title>KobeitDos AI — Көбейту кестесі</title>
+  <meta name="description" content="4-сынып оқушыларына көбейту кестесін үйрететін ақылды қазақша платформа.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" data-section="home" aria-label="Басты бетке өту">
+      <span class="brand-mark">×</span><span>KobeitDos <b>AI</b></span>
+    </a>
+    <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="main-nav">☰ <span>Мәзір</span></button>
+    <nav id="main-nav" class="main-nav" aria-label="Негізгі мәзір">
+      <button data-section="home" class="active">🏠 Басты бет</button>
+      <button data-section="learn">📚 Үйрену</button>
+      <button data-section="game">🎮 Ойын</button>
+      <button data-section="diagnostic">🧠 Диагностика</button>
+      <button data-section="practice">🎯 Жеке жаттығу</button>
+      <button data-section="result">📊 Менің нәтижем</button>
+      <button data-section="class">👥 Сынып нәтижесі</button>
+    </nav>
+  </header>
+
+  <main id="app" class="page-shell">
+    <section id="home" class="view active" aria-labelledby="home-title">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">4-сыныпқа арналған ақылды көмекші ✨</span>
+          <h1 id="home-title">KobeitDos <span>AI</span></h1>
+          <p class="hero-lead">Көбейту кестесін ақылды түрде үйрен!</p>
+          <div class="name-card">
+            <label for="student-name">Алдымен аты-жөніңді жаз</label>
+            <div class="name-row">
+              <input id="student-name" type="text" maxlength="60" autocomplete="name" placeholder="Мысалы: Айару Әли" aria-describedby="name-hint">
+              <button id="save-name" class="button primary">Бастайық! 🚀</button>
+            </div>
+            <small id="name-hint">Нәтижең өз атыңмен сақталады.</small>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orbit orbit-one">7 × 8</div><div class="orbit orbit-two">6 × 4</div>
+          <div class="mascot">🤖<span>54?</span></div>
+          <div class="answer-bubble">6 × 9 = <b>54</b> 🎉</div>
+        </div>
+      </div>
+      <div class="feature-grid">
+        <button class="feature-card purple" data-section="learn"><span>📚</span><b>Кестені үйрен</b><small>2-ден 9-ға дейін таңда</small></button>
+        <button class="feature-card green" data-section="game"><span>🎮</span><b>Ойын ойна</b><small>5 қызықты есеп шығар</small></button>
+        <button class="feature-card orange" data-section="diagnostic"><span>🧠</span><b>Өзіңді тексер</b><small>Қай кесте қиын екенін біл</small></button>
+        <button class="feature-card pink" data-section="practice"><span>🎯</span><b>Жеке жаттық</b><small>AI ұсынған кестені бекіт</small></button>
+      </div>
+    </section>
+
+    <section id="learn" class="view" aria-labelledby="learn-title">
+      <div class="section-heading"><span>📚</span><div><p>Үйрену бөлімі</p><h2 id="learn-title">Қай кестені үйренеміз?</h2></div></div>
+      <div id="number-picker" class="number-picker" aria-label="Көбейту кестесін таңдау"></div>
+      <div id="learn-content" class="panel empty-state"><div class="big-icon">☝️</div><h3>Жоғарыдан бір санды таңда</h3><p>Сол санның көбейту кестесін бірге үйренеміз.</p></div>
+    </section>
+
+    <section id="game" class="view" aria-labelledby="game-title">
+      <div class="section-heading"><span>🎮</span><div><p>5 есептік ойын</p><h2 id="game-title">Көбейту бәйгесі</h2></div></div>
+      <div id="game-content" class="quiz-wrap"></div>
+    </section>
+
+    <section id="diagnostic" class="view" aria-labelledby="diagnostic-title">
+      <div class="section-heading"><span>🧠</span><div><p>Ақылды тексеру</p><h2 id="diagnostic-title">Диагностика</h2></div></div>
+      <div id="diagnostic-content" class="quiz-wrap"></div>
+    </section>
+
+    <section id="practice" class="view" aria-labelledby="practice-title">
+      <div class="section-heading"><span>🎯</span><div><p>Саған арналған тапсырма</p><h2 id="practice-title">Жеке жаттығу</h2></div></div>
+      <div id="practice-content" class="quiz-wrap"></div>
+    </section>
+
+    <section id="result" class="view" aria-labelledby="result-title">
+      <div class="section-heading"><span>📊</span><div><p>Жеке оқу есебі</p><h2 id="result-title">Менің нәтижем</h2></div></div>
+      <div id="result-content"></div>
+    </section>
+
+    <section id="class" class="view" aria-labelledby="class-title">
+      <div class="section-heading"><span>👥</span><div><p>Мұғалімге арналған шолу</p><h2 id="class-title">Сынып нәтижесі</h2></div></div>
+      <div id="class-content"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <footer>💜 KobeitDos AI · Күн сайын аз-аздан жаттық — үлкен нәтижеге жет!</footer>
+  <script src="app.js"></script>
+</body>
+</html>
