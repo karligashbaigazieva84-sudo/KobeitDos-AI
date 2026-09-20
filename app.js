@@ -129,10 +129,32 @@ function renderResult() {
 }
 
 function getRecords() { try { const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); return Array.isArray(data) ? data : []; } catch { return []; } }
-function saveStudentResult() {
-  if (!state.practice || !state.name) return; const records = getRecords();
-  records.push({ name: state.name, weak: state.practice.number, before: state.practice.before, after: state.practice.after, change: state.practice.change, date: state.practice.completedAt }); localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
-}
+async function saveStudentResult() {
+  if (!state.practice || !state.name) return;
+
+  const result = {
+    name: state.name,
+    weak: state.practice.number,
+    before: state.practice.before,
+    after: state.practice.after,
+    change: state.practice.change,
+    date: new Date().toISOString()
+  };
+
+  // Осы компьютерде де сақталады
+  const records = getRecords();
+  records.push(result);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+
+  // Firebase-ке сақталады
+  try {
+    await addDoc(collection(db, "results"), result);
+    toast("✅ Нәтиже мұғалімге жіберілді!");
+  } catch (error) {
+    console.error("Firebase қатесі:", error);
+    toast("⚠️ Нәтиже құрылғыда сақталды");
+  }
+}В
 function renderClassResult() {
   const records = getRecords(); if (!records.length) { $("#class-content").innerHTML = `<div class="panel empty-state"><div class="big-icon">📂</div><h3>Әзірге сақталған нәтиже жоқ</h3><p>Оқушылар диагностика мен жеке жаттығуды аяқтағанда, сынып есебі осында жиналады.</p></div>`; return; }
   const avg = (key) => records.reduce((sum, item) => sum + Number(item[key]), 0) / records.length;
